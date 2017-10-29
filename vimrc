@@ -68,6 +68,46 @@ autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead Dockerfile setlocal noexpandtab
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" I don't want to type <SHIFT>; aka : (one of the most common command)
+nmap ; :
+
+" hotkey for showing / hiding line numbers
+nmap , :set invnumber<CR>
+
+" reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" split pane horizontally or vertically
+map <Bar> <C-W>v<C-W><Right>
+map -     <C-W>s<C-W><Down>
+
+" auto 'set paste' and 'set nopaste' (other option is to set pastetoggle=<F2>)
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+" pane switching
+map <Tab> <C-W>w
+
+" buffer switching
+nnoremap [C :bnext<CR>
+nnoremap [D :bprevious<CR>
+nmap = :b
+
+" tabs switching
+nmap <S-Left> :tabprevious<Return>
+nmap <S-Right> :tabnext<Return>
+imap <S-Left> <Esc>:tabprevious<Return>
+imap <S-Right> <Esc>:tabnext<Return>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim plugins - included using Pathogen
 if !empty((globpath(&runtimepath, 'bundle/vim-pathogen/autoload/pathogen.vim')))
   runtime bundle/vim-pathogen/autoload/pathogen.vim
@@ -77,18 +117,13 @@ endif
 
 if exists("g:loaded_pathogen")
 
-  " vim-airline
-  if &runtimepath =~ 'vim-airline'
-    let g:airline_powerline_fonts=1
-    let g:airline_symbols=get(g:, 'airline_symbols', {})
-    let g:airline_symbols.maxlinenr=''
-    let g:airline_symbols.linenr=''
-    let g:airline_theme='single_dark'
-    " show the list of buffers
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#buffer_nr_show = 1
-    let g:airline#extensions#tabline#tab_nr_type = 1
-    let g:airline#extensions#tabline#fnamemod = ':t' " show just the filename
+  " NerdTree
+  if &runtimepath =~ 'nerdtree'
+    highlight def link NERDTreeRO NERDTreeFile
+    let NERDTreeShowBookmarks=1
+    " hotkeys for showing / hiding NerdTree
+    nmap § :NERDTreeFocus<CR>
+    nmap \\ :NERDTreeToggle<CR>
   endif
 
   " Syntastic
@@ -109,13 +144,18 @@ if exists("g:loaded_pathogen")
     let g:ycm_python_binary_path = '/usr/local/bin/python3'
   endif
 
-  " NerdTree
-  if &runtimepath =~ 'nerdtree'
-    highlight def link NERDTreeRO NERDTreeFile
-    let NERDTreeShowBookmarks=1
-    " hotkeys for showing / hiding NerdTree
-    nmap § :NERDTreeFocus<CR>
-    nmap \\ :NERDTreeToggle<CR>
+  " Airline
+  if &runtimepath =~ 'vim-airline'
+    let g:airline_powerline_fonts=1
+    let g:airline_symbols=get(g:, 'airline_symbols', {})
+    let g:airline_symbols.maxlinenr=''
+    let g:airline_symbols.linenr=''
+    let g:airline_theme='single_dark'
+    " show the list of buffers
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline#extensions#tabline#tab_nr_type = 1
+    let g:airline#extensions#tabline#fnamemod = ':t' " show just the filename
   endif
 
   " YouCompleteMe
@@ -124,46 +164,6 @@ if exists("g:loaded_pathogen")
   endif
 
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" auto 'set paste' and 'set nopaste' (other option is to set pastetoggle=<F2>)
-let &t_SI .= "\<Esc>[?2004h"
-let &t_EI .= "\<Esc>[?2004l"
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-" reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
-
-" split pane horizontally or vertically
-map <Bar> <C-W>v<C-W><Right>
-map -     <C-W>s<C-W><Down>
-
-" I don't want to type <SHIFT>; aka : (one of the most common command)
-nmap ; :
-
-" hotkey for showing / hiding line numbers
-nmap , :set invnumber<CR>
-
-" pane switching
-map <Tab> <C-W>w
-
-" buffer switching
-nnoremap [C :bnext<CR>
-nnoremap [D :bprevious<CR>
-nmap = :b
-
-" tabs switching
-nmap <S-Left> :tabprevious<Return>
-nmap <S-Right> :tabnext<Return>
-imap <S-Left> <Esc>:tabprevious<Return>
-imap <S-Right> <Esc>:tabnext<Return>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
