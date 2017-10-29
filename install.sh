@@ -3,16 +3,8 @@
 # Exit on error
 set -e
 
-VIM_VERSION=`vim --version`
-if [[ $VIM_VERSION =~ "VIM - Vi IMproved 8" ]]; then
-  echo "Vim version is fine."
-else
-  echo "Vim 8 has to be installed."
-  exit 1
-fi
-
 # Link vimrc if it does not exist yet
-if [ -e ~/.vimrc ]; then
+if [ -e ~/.vimrc ] || [ -L ~/.vimrc ]; then
   echo "~/.vimrc already exists => not linking it"
 else
   ln -s vimrc ~/.vimrc
@@ -27,22 +19,6 @@ if [ ! -d "vim-pathogen" ]; then
 else
   pushd vim-pathogen
   git pull
-  popd
-fi
-
-# YouCompleteMe = as-you-type, fuzzy-search code completion engine
-if [ ! -d "YouCompleteMe" ]; then
-  git clone https://github.com/Valloric/YouCompleteMe.git
-  pushd YouCompleteMe
-  git submodule update --init --recursive
-  ./install.py --clang-completer
-  ln -s third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/.ycm_extra_conf.py
-  popd
-else
-  pushd YouCompleteMe
-  git pull
-  git submodule update --recursive
-  ./install.py --clang-completer
   popd
 fi
 
@@ -110,19 +86,6 @@ if [ ! -d "vim-multiple-cursors" ]; then
 else
   pushd vim-multiple-cursors
   git pull
-  popd
-fi
-
-# vimproc = asynchronous library for Vim script
-if [ ! -d "vimproc.vim" ]; then
-  git clone https://github.com/Shougo/vimproc.vim.git
-  pushd vimproc.vim
-  make
-  popd
-else
-  pushd vimproc.vim
-  git pull
-  make
   popd
 fi
 
