@@ -4,10 +4,10 @@
 set -e
 
 VIM_VERSION=`vim --version`
-if [[ $VIM_VERSION =~ "VIM - Vi IMproved 8" ]]; then
+if [[ $VIM_VERSION =~ "+python" ]]; then
   echo "Vim version is fine."
 else
-  echo "Vim 8 has to be installed."
+  echo "Vim with python or python3 support has to be installed."
   exit 1
 fi
 
