@@ -55,9 +55,6 @@ highlight DiffChange                  ctermbg=236
 highlight DiffDelete                  ctermbg=88
 highlight DiffText                    ctermbg=17  cterm=bold
 
-" set 'Airline friendly' font
-set guifont=Meslo\ LG\ M\ for\ Powerline:h11
-
 " display invisible characters (tab must consist of two characters)
 set list listchars=tab:>-,trail:.
 
@@ -156,6 +153,8 @@ if exists("g:loaded_pathogen")
     let g:airline#extensions#tabline#buffer_nr_show = 1
     let g:airline#extensions#tabline#tab_nr_type = 1
     let g:airline#extensions#tabline#fnamemod = ':t' " show just the filename
+    " set 'Airline friendly' font
+    set guifont=Meslo\ LG\ M\ for\ Powerline:h11
   endif
 
   " YouCompleteMe
