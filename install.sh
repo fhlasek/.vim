@@ -4,10 +4,10 @@
 set -e
 
 # Link vimrc if it does not exist yet
-if [ -e ~/.vimrc ] || [ -L ~/.vimrc ]; then
+if [ -e "$HOME/.vimrc" ] || [ -L "$HOME/.vimrc" ]; then
   echo "~/.vimrc already exists => not linking it"
 else
-  ln -s vimrc ~/.vimrc
+  ln -s vimrc "$HOME/.vimrc"
 fi
 
 mkdir -p ~/.vim/bundle
