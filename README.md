@@ -67,3 +67,5 @@ Then, you should be able to build the extension itself:
 ```
 ./install_ycm.sh
 ```
+
+![full_swing](./screenshots/full_swing.gif)
