@@ -33,6 +33,8 @@ set ruler          " show the line and column number
 set laststatus=2   " the last window will always have a status line
 set t_Co=256       " enable 256 colors
 set scrolloff=5    " the number of lines to keep above and below the cursor
+set splitbelow     " open new horizontal split panes to bottom
+set splitright     " open new vertical split panes to right
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -77,8 +79,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " split pane horizontally or vertically
-map <Bar> <C-W>v<C-W><Right>
-map -     <C-W>s<C-W><Down>
+map <Bar> :vsplit<Return>
+map -     :split<Return>
 
 " auto 'set paste' and 'set nopaste' (other option is to set pastetoggle=<F2>)
 let &t_SI .= "\<Esc>[?2004h"
@@ -160,6 +162,9 @@ if exists("g:loaded_pathogen")
   " YouCompleteMe
   if &runtimepath =~ 'YouCompleteMe'
     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+    let g:ycm_goto_buffer_command = 'vertical-split'
+    nnoremap f :YcmCompleter GoToDeclaration<Return>
+    set completeopt-=preview " don't show preview on autocompletion
   endif
 
 endif
