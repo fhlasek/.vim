@@ -19,7 +19,7 @@ if [ ! -d "YouCompleteMe" ]; then
   pushd YouCompleteMe
   git submodule update --init --recursive
   ./install.py --clang-completer
-  ln -s third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/.ycm_extra_conf.py
+  cp third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/.ycm_extra_conf.py
   popd
 else
   pushd YouCompleteMe
