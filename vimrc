@@ -72,7 +72,7 @@ autocmd BufNewFile,BufRead Dockerfile setlocal noexpandtab
 nmap ; :
 
 " hotkey for showing / hiding line numbers
-nmap , :set invnumber<CR>
+nmap , :set invnumber<Return>
 
 " reselect visual block after indent/outdent
 vnoremap < <gv
@@ -96,9 +96,9 @@ endfunction
 map <Tab> <C-W>w
 
 " buffer switching
-nnoremap [C :bnext<CR>
-nnoremap [D :bprevious<CR>
-nmap = :b
+nnoremap [C :bnext<Return>
+nnoremap [D :bprevious<Return>
+nmap = :buffer
 
 " tabs switching
 nmap <S-Left> :tabprevious<Return>
@@ -119,10 +119,10 @@ if exists("g:loaded_pathogen")
   " NerdTree
   if &runtimepath =~ 'nerdtree'
     highlight def link NERDTreeRO NERDTreeFile
-    let NERDTreeShowBookmarks=1
+    let NERDTreeShowBookmarks = 1
     " hotkeys for showing / hiding NerdTree
-    nmap § :NERDTreeFocus<CR>
-    nmap \\ :NERDTreeToggle<CR>
+    nmap § :NERDTreeFocus<Return>
+    nmap \\ :NERDTreeToggle<Return>
   endif
 
   " Syntastic
@@ -139,18 +139,18 @@ if exists("g:loaded_pathogen")
 
     let g:syntastic_python_flake8_exec = 'python3'
     let g:syntastic_python_flake8_args = ['-m', 'flake8']
-    let g:syntastic_python_checkers=['python3', 'py3kwarn']
+    let g:syntastic_python_checkers = ['python3', 'py3kwarn']
     let g:ycm_python_binary_path = '/usr/local/bin/python3'
   endif
 
   " Airline
   if &runtimepath =~ 'vim-airline'
-    let g:airline_powerline_fonts=1
-    let g:airline_symbols=get(g:, 'airline_symbols', {})
-    let g:airline_symbols.maxlinenr=''
-    let g:airline_symbols.linenr=''
+    let g:airline_powerline_fonts = 1
+    let g:airline_symbols = get(g:, 'airline_symbols', {})
+    let g:airline_symbols.maxlinenr = ''
+    let g:airline_symbols.linenr = ''
     if !empty(globpath(&runtimepath, 'autoload/airline/themes/single_dark.vim'))
-      let g:airline_theme='single_dark'
+      let g:airline_theme = 'single_dark'
     endif
     " show the list of buffers
     let g:airline#extensions#tabline#enabled = 1
