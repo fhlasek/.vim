@@ -108,7 +108,7 @@ imap <S-Right> <Esc>:tabnext<Return>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim plugins - included using Pathogen
-if !empty((globpath(&runtimepath, 'bundle/vim-pathogen/autoload/pathogen.vim')))
+if !empty(globpath(&runtimepath, 'bundle/vim-pathogen/autoload/pathogen.vim'))
   runtime bundle/vim-pathogen/autoload/pathogen.vim
   execute pathogen#infect()
   filetype plugin indent on
@@ -149,7 +149,9 @@ if exists("g:loaded_pathogen")
     let g:airline_symbols=get(g:, 'airline_symbols', {})
     let g:airline_symbols.maxlinenr=''
     let g:airline_symbols.linenr=''
-    let g:airline_theme='single_dark'
+    if !empty(globpath(&runtimepath, 'autoload/airline/themes/single_dark.vim'))
+      let g:airline_theme='single_dark'
+    endif
     " show the list of buffers
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#buffer_nr_show = 1
