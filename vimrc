@@ -56,6 +56,7 @@ highlight DiffAdd                     ctermbg=10  cterm=bold
 highlight DiffChange                  ctermbg=236
 highlight DiffDelete                  ctermbg=88
 highlight DiffText                    ctermbg=17  cterm=bold
+highlight SpecialKey    ctermfg=19
 
 " display invisible characters (tab must consist of two characters)
 set list listchars=tab:>-,trail:.
@@ -106,6 +107,9 @@ nmap <S-Right> :tabnext<Return>
 imap <S-Left> <Esc>:tabprevious<Return>
 imap <S-Right> <Esc>:tabnext<Return>
 
+" JSON formatter
+nmap =j :%!python -m json.tool<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim plugins - included using Pathogen
 if !empty(globpath(&runtimepath, 'bundle/vim-pathogen/autoload/pathogen.vim'))
@@ -140,7 +144,10 @@ if exists("g:loaded_pathogen")
     let g:syntastic_python_flake8_exec = 'python3'
     let g:syntastic_python_flake8_args = ['-m', 'flake8']
     let g:syntastic_python_checkers = ['python3', 'py3kwarn']
-    let g:ycm_python_binary_path = '/usr/local/bin/python3'
+    let g:ycm_python_binary_path = '/usr/bin/python'
+
+    let g:syntastic_cpp_compiler = 'clang++'
+    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
   endif
 
   " Airline
