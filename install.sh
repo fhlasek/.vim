@@ -89,4 +89,13 @@ else
   popd
 fi
 
+# ctrlp.vim = Full path fuzzy file, buffer, mru, tag, ... finder
+if [ ! -d "ctrlp.vim" ]; then
+  git clone https://github.com/ctrlpvim/ctrlp.vim.git
+else
+  pushd ctrlp.vim
+  git pull
+  popd
+fi
+
 popd
