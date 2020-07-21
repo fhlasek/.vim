@@ -1,4 +1,4 @@
-" Filip Hlasek (fhlasek) <filip@bluevisionlabs.com>
+" Filip Hlasek (fhlasek)
 " Github page: https://github.com/fhlasek/.vim
 "      __  _      _                    _
 "     / _|| |__  ( |  __ _  ___   ___ | | __
